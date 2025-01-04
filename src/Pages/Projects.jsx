@@ -4,21 +4,21 @@ const Projects = () => {
     const projects = [
         {
           title: "ManageNest",
-          description: "Description of Project 1.",
-          image: "path-to-project1-image.jpg", // Replace with your image path
-          link: "https://managenest.netlify.app" // Replace with your project link
+          description: "Description.",
+          image: "path-to-project1-image.jpg", 
+          link: "https://managenest.netlify.app" 
         },
         {
           title: "AstrayStay",
-          description: "Description of Project 2.",
+          description: "Description ",
           image: "path-to-project2-image.jpg",
           link: "https://astrostay1.netlify.app"
         },
         {
           title: "JourneyGenie",
-          description: "Description of Project 3.",
+          description: "Description",
           image: "path-to-project3-image.jpg",
-          link: "https://journey-genie-1.netlify.app/"
+          link: "https://journey-genie-1.netlify.app"
         },
       ];
     return (
