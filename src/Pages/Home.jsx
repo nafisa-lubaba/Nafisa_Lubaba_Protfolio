@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import Lottie from 'react-lottie';
 import animationData from "../assets/Hi.json"; 
 import { GithubIcon, LinkedinIcon, MailIcon, ChevronDownIcon } from 'lucide-react';
@@ -41,26 +41,29 @@ const Home = () => {
       }}
     />
   );
-  const SocialIcon = ({ Icon, href, label, index }) => (
+  const SocialIcon = ({ Icon, href, label }) => (
     <a
       href={href}
       className="relative group"
-      onMouseEnter={() => setHoveredIcon(label)}
-      onMouseLeave={() => setHoveredIcon(null)}
+      target="_blank" 
+      rel="noopener noreferrer"
     >
-      <div className={`
-        p-4 rounded-full bg-white/10 backdrop-blur-md
-        transform transition-all duration-300
-        hover:bg-white/20 hover:scale-110
-        ${hoveredIcon === label ? 'scale-110 bg-white/20' : ''}
-      `}>
+      <div
+        className={`
+          p-4 rounded-full bg-white/10 backdrop-blur-md
+          transform transition-all duration-300
+          hover:bg-white/20 hover:scale-110
+        `}
+      >
         <Icon className="w-6 h-6 text-white" />
       </div>
-      <span className={`
-        absolute -bottom-8 left-1/2 -translate-x-1/2 
-        text-sm text-white opacity-0 transition-all duration-300
-        ${hoveredIcon === label ? 'opacity-100' : ''}
-      `}>
+      <span
+        className={`
+          absolute -bottom-8 left-1/2 -translate-x-1/2 
+          text-sm text-white opacity-0 transition-all duration-300
+          group-hover:opacity-100
+        `}
+      >
         {label}
       </span>
     </a>
@@ -102,15 +105,27 @@ const Home = () => {
           </div>
 
           {/* Social Icons */}
-          <div className="flex gap-6 justify-center md:justify-start mt-12">
-            {[
-              { Icon: GithubIcon, href: "#", label: "GitHub" },
-              { Icon: LinkedinIcon, href: "#", label: "LinkedIn" },
-              { Icon: MailIcon, href: "#", label: "Email" }
-            ].map((social) => (
-              <SocialIcon key={social.label} {...social} />
-            ))}
-          </div>
+        <div className="flex gap-6 justify-center md:justify-start mt-12">
+  {[
+    { 
+      Icon: GithubIcon, 
+      href: "https://github.com/nafisa-lubaba", 
+      label: "GitHub" 
+    },
+    { 
+      Icon: LinkedinIcon, 
+      href: "https://www.linkedin.com/in/nafisalubabain/", 
+      label: "LinkedIn" 
+    },
+    { 
+      Icon: MailIcon, 
+      href: "mailto:nafisalubaba71@gmail.com", 
+      label: "Email" 
+    }
+  ].map((social) => (
+    <SocialIcon key={social.label} {...social} />
+  ))}
+</div>
         </div>
 
         {/* Lottie animation */}
