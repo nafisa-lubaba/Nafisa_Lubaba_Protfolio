@@ -1,19 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Home, User, Code, BookOpen, Mail, Menu, X } from "lucide-react";
+import { Home, User, Code, BookOpen, Mail, ArrowBigLeft, ArrowBigLeftIcon } from "lucide-react";
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const navItems = [
     { name: "Home", path: "/", icon: Home },
@@ -24,88 +15,74 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="fixed w-full z-50 top-0">
-      <div
-        className={`absolute inset-x-4 top-2 bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-900 
-                    rounded-3xl shadow-lg backdrop-blur-md transition-all duration-300 
-                    ${scrolled ? "py-1" : "py-3"}`}
-      >
-        <nav className="relative">
-          <div className="container mx-auto px-4 relative">
-            <div className="flex justify-between items-center">
-              {/* Logo */}
-              <h1 className="text-3xl font-extrabold">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-pink-300 to-cyan-300">
-                  Nafisa Lubaba
-                </span>
-              </h1>
+    <div 
+      className={`fixed right-0 top-1/2 -translate-y-1/2 z-50 transition-all duration-300 ease-in-out
+                  ${isCollapsed ? "mr-0" : "mr-0"}`}
+    >
+      <nav className="relative">
+        <div 
+          className={`flex flex-col gap-4 p-4 transition-all duration-300
+                      ${isCollapsed ? "w-16" : "w-40"}`}
+        >
+          {/* Collapse toggle button */}
+          <button
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 
+                       rounded-full
+                       flex items-center justify-center text-white/80
+                       hover:scale-110 transition-transform duration-200"
+          >
+            <span className={`transform transition-transform duration-300 text-sm
+                            ${isCollapsed ? "rotate-180" : "rotate-0"}`}>
+              <ArrowBigLeftIcon></ArrowBigLeftIcon>
+            </span>
+          </button>
 
-              {/* Desktop navigation */}
-              <ul className="hidden md:flex space-x-8">
-                {navItems.map(({ name, path, icon: Icon }) => (
-                  <li key={name} className="group">
-                    <NavLink
-                      to={path}
-                      className={({ isActive }) =>
-                        `font-medium tracking-wide transition-all duration-300 flex items-center gap-2 p-2 ${
-                          isActive
-                            ? "text-yellow-300"
-                            : "text-white hover:text-yellow-300"
-                        }`
-                      }
-                    >
-                      <Icon
-                        className={`w-4 h-4 transform transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110`}
-                      />
-                      {name}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Mobile menu button */}
-              <button
-                onClick={() => setIsMobile(!isMobile)}
-                className="md:hidden p-2 text-white hover:text-yellow-300"
+          {navItems.map(({ name, path, icon: Icon }, index) => (
+            <NavLink
+              key={name}
+              to={path}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              className={({ isActive }) =>
+                `relative flex items-center gap-4 p-3 rounded-xl
+                 transition-all duration-300 overflow-hidden
+                 group cursor-pointer
+                 ${isActive ? "text-white" : "text-white/70 hover:text-white"}
+                 ${hoveredIndex === index ? "scale-105" : "scale-100"}
+                 ${isCollapsed ? "justify-center" : "justify-end"}`
+              }
+            >
+              {/* Active/Hover indicator */}
+              <div 
+                className={`absolute inset-0 transition-opacity duration-300
+                           ${hoveredIndex === index ? "opacity-100" : "opacity-0"}`}
               >
-                {isMobile ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
-            </div>
-
-            {/* Mobile menu */}
-            {isMobile && (
-              <div className="absolute top-full left-0 w-full bg-gradient-to-b from-blue-900 to-indigo-900 mt-2 py-4 rounded-2xl shadow-xl">
-                <ul className="space-y-2">
-                  {navItems.map(({ name, path, icon: Icon }) => (
-                    <li key={name} className="group">
-                      <NavLink
-                        to={path}
-                        onClick={() => setIsMobile(false)}
-                        className={({ isActive }) =>
-                          `flex items-center gap-3 px-6 py-3 transition-all duration-300 ${
-                            isActive
-                              ? "text-yellow-300 bg-white/10"
-                              : "text-white hover:bg-white/5 hover:text-yellow-300"
-                          }`
-                        }
-                      >
-                        <Icon className="w-5 h-5 transform transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
-                        {name}
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
+                <div className="absolute right-0 top-0 h-full w-[2px] bg-white/50" />
               </div>
-            )}
-          </div>
-        </nav>
-      </div>
+
+              {/* Text with slide animation */}
+              <span 
+                className={`whitespace-nowrap transition-all duration-300 order-1
+                           ${isCollapsed ? "opacity-0 w-0" : "opacity-100 w-auto"}
+                           ${hoveredIndex === index ? "transform -translate-x-1" : ""}`}
+              >
+                {name}
+              </span>
+
+              {/* Icon with animation */}
+              <div className="relative order-2">
+                <Icon 
+                  className={`w-5 h-5 transition-all duration-300
+                             ${hoveredIndex === index ? "scale-110" : "scale-100"}`}
+                />
+              </div>
+            </NavLink>
+          ))}
+        </div>
+      </nav>
     </div>
   );
 };
 
 export default Navbar;
-
-
-
- 

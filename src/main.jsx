@@ -14,39 +14,29 @@ import Skills from './Pages/Skills';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root></Root>, 
-    children:[
+    element: <Root></Root>,
+    children: [
       {
         path: '/',
-        element:<Home></Home> ,
-        
-       
+        element: <Home></Home>,
       },
       {
         path: 'about',
-        element:<About></About>,
-        
-       
+        element: <About></About>,
       },
       {
         path: 'projects',
-        element:<Projects></Projects>,
-        
-       
+        element: <Projects></Projects>,
       },
       {
         path: 'contact',
-        element:<Contact></Contact>,
-        
-       
+        element: <Contact></Contact>,
       },
       {
         path: 'skills',
-        element:<Skills></Skills>,
-        
-       
+        element: <Skills></Skills>,
       },
-      
+
     ]
   },
 ]);
