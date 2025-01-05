@@ -1,15 +1,14 @@
 import { Outlet } from "react-router-dom";
-import Home from "../Pages/Home";
+// import AnimatedBackground from "./AnimatedBackground";
 import Navbar from "./Navbar";
-
-
+import AnimatedBackground from './AnimatedBackground '
 const Root = () => {
     return (
         <div className="relative min-h-screen">
             <AnimatedBackground />
             <div className="relative z-10">
                 <Navbar />
-                <main className="min-h-[calc(100vh-4rem)]">
+                <main className="min-h-[calc(100vh-4rem)] pr-32">
                     <Outlet />
                 </main>
             </div>
@@ -17,7 +16,7 @@ const Root = () => {
             {/* Scroll to top button */}
             <button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="fixed bottom-8 right-8 z-50 p-2 rounded-full bg-teal-500 text-white shadow-lg hover:bg-teal-600 transition-colors duration-300"
+                className="fixed bottom-8 right-8 z-50 p-2 pr-24 rounded-full bg-teal-500 text-white shadow-lg hover:bg-teal-600 transition-colors duration-300"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
