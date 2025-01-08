@@ -169,9 +169,11 @@ const Skills = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl font-bold ">
-            Technical Skills
-          </h2>
+           <div className="text-center mb-12">
+        <h2 className="inline-block text-2xl font-bold text-emerald-400 border-b-2 border-emerald-400 pb-2">
+          Technical Skills
+        </h2>
+      </div>
           <p className="mt-4 text-gray-200 max-w-2xl mx-auto">
             A comprehensive overview of my technical expertise and proficiency
             levels in various technologies and tools.

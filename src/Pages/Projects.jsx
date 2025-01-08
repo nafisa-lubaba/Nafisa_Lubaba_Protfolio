@@ -44,9 +44,11 @@ const Projects = () => {
           />
         </svg>
       </div>
-      <h2 className="text-4xl font-bold text-white relative z-10">
-        My Unique Projects
-      </h2>
+      <div className="text-center mb-12">
+        <h2 className="inline-block text-2xl font-bold text-emerald-400 border-b-2 border-emerald-400 pb-2">
+          My Projects
+        </h2>
+      </div>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 px-8 relative z-10">
         {projects.map((project, index) => (
           <div
