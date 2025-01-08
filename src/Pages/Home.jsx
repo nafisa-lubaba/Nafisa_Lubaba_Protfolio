@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Lottie from 'react-lottie';
-import animationData from "../assets/Hi.json"; 
+import animationData from "../assets/Hi.json";
 import { GithubIcon, LinkedinIcon, MailIcon, ChevronDownIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -32,54 +32,11 @@ const Home = () => {
     },
   };
 
-  const Bubble = ({ className }) => (
-    <div 
-      className={`absolute rounded-full backdrop-blur-3xl ${className}`}
-      style={{
-        transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`,
-      }}
-    />
-  );
-
-  const SocialIcon = ({ Icon, href, label }) => (
-    <a
-      href={href}
-      className="relative group"
-      target="_blank" 
-      rel="noopener noreferrer"
-    >
-      <div
-        className="p-4 rounded-full bg-white/10 backdrop-blur-md
-                  transform transition-all duration-300
-                  hover:bg-white/20 hover:scale-110"
-      >
-        <Icon className="w-6 h-6 text-white" />
-      </div>
-      <span
-        className="absolute -bottom-8 left-1/2 -translate-x-1/2 
-                  text-sm text-white opacity-0 transition-all duration-300
-                  group-hover:opacity-100"
-      >
-        {label}
-      </span>
-    </a>
-  );
-
   return (
-    <section className="min-h-screen relative overflow-hidden bg-gradient-to-br from-teal-900 via-emerald-800 to-cyan-900">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-50">
-        <Bubble className="w-96 h-96 bg-teal-400/30 -top-20 -left-20 animate-float-slow" />
-        <Bubble className="w-80 h-80 bg-emerald-400/30 top-1/2 -right-20 animate-float-medium" />
-        <Bubble className="w-72 h-72 bg-cyan-400/30 bottom-20 left-1/3 animate-float-fast" />
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:20px_20px]" />
-        </div>
-      </div>
-
-      <div className="relative z-10 container mx-auto px-6 h-screen flex flex-col md:flex-row items-center">
+    <section className="min-h-screen flex flex-col justify-center items-center  text-white">
+      <div className="container mx-auto px-6 h-full flex flex-col-reverse md:flex-row justify-center items-center md:items-center">
         <div className="w-full md:w-1/2 text-center md:text-left space-y-8">
-          <h2 className="text-4xl md:text-6xl font-bold leading-tight text-white">
+          <h2 className="text-4xl md:text-6xl font-bold leading-tight">
             Hi, I'm{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-cyan-300 to-emerald-300">
               Nafisa Lubaba
@@ -97,18 +54,74 @@ const Home = () => {
             </Link>
           </div>
           <div className="flex gap-6 justify-center md:justify-start mt-12">
-            {[
-              { Icon: GithubIcon, href: "https://github.com/nafisa-lubaba", label: "GitHub" },
-              { Icon: LinkedinIcon, href: "https://www.linkedin.com/in/nafisalubabain/", label: "LinkedIn" },
-              { Icon: MailIcon, href: "mailto:nafisalubaba71@gmail.com", label: "Email" },
-            ].map((social) => (
-              <SocialIcon key={social.label} {...social} />
-            ))}
+            <a
+              href="https://github.com/nafisa-lubaba"
+              className="relative group"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div
+                className="p-4 rounded-full bg-white/10 backdrop-blur-md
+                          transform transition-all duration-300
+                          hover:bg-white/20 hover:scale-110"
+              >
+                <GithubIcon className="w-6 h-6 text-white" />
+              </div>
+              <span
+                className="absolute -bottom-8 left-1/2 -translate-x-1/2 
+                          text-sm text-white opacity-0 transition-all duration-300
+                          group-hover:opacity-100"
+              >
+                GitHub
+              </span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/nafisalubabain/"
+              className="relative group"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div
+                className="p-4 rounded-full bg-white/10 backdrop-blur-md
+                          transform transition-all duration-300
+                          hover:bg-white/20 hover:scale-110"
+              >
+                <LinkedinIcon className="w-6 h-6 text-white" />
+              </div>
+              <span
+                className="absolute -bottom-8 left-1/2 -translate-x-1/2 
+                          text-sm text-white opacity-0 transition-all duration-300
+                          group-hover:opacity-100"
+              >
+                LinkedIn
+              </span>
+            </a>
+            <a
+              href="mailto:nafisalubaba71@gmail.com"
+              className="relative group"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div
+                className="p-4 rounded-full bg-white/10 backdrop-blur-md
+                          transform transition-all duration-300
+                          hover:bg-white/20 hover:scale-110"
+              >
+                <MailIcon className="w-6 h-6 text-white" />
+              </div>
+              <span
+                className="absolute -bottom-8 left-1/2 -translate-x-1/2 
+                          text-sm text-white opacity-0 transition-all duration-300
+                          group-hover:opacity-100"
+              >
+                Email
+              </span>
+            </a>
           </div>
         </div>
 
         <div className="w-full md:w-1/2 flex justify-center items-center mt-8 md:mt-0">
-          <div className="w-full max-w-md transform hover:scale-105 transition-transform duration-300"
+          <div className="w-full transform hover:scale-105 transition-transform duration-300"
             style={{
               transform: `translate(${mousePosition.x * -0.2}px, ${mousePosition.y * -0.2}px)`,
             }}
@@ -118,12 +131,9 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <ChevronDownIcon className="w-8 h-8 text-white/50 animate-bounce" />
-      </div>
+    
     </section>
   );
 };
 
 export default Home;
-

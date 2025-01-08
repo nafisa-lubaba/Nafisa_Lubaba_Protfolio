@@ -1,13 +1,15 @@
 import React from 'react';
+import AnimatedSectionHeading from '../Components/AnimatedSectionHeading';
 
 const About = () => {
   return (
     <div className="relative max-w-6xl mx-auto px-4 py-16">
       {/* Simplified About Me header */}
       <div className="text-center mb-12">
-        <h2 className="inline-block text-2xl font-bold text-emerald-400 border-b-2 border-emerald-400 pb-2">
+        {/* <h2 className="inline-block text-2xl font-bold text-emerald-400 border-b-2 border-emerald-400 pb-2">
           About Me
-        </h2>
+        </h2> */}
+        <AnimatedSectionHeading text='About Me' ></AnimatedSectionHeading>
       </div>
 
       <div className="mt-8 flex items-start justify-between gap-8">
