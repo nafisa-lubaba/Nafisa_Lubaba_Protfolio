@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import Lottie from 'react-lottie';
 import animationData from "../assets/Hi.json";
-import { GithubIcon, LinkedinIcon, MailIcon, ChevronDownIcon } from 'lucide-react';
+import { GithubIcon, LinkedinIcon, MailIcon, FileDownIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import resumePDF from '../assets/Nafisa_Lubaba_Frontend_Developer_Resume.pdf';
 
 const Home = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -32,8 +33,12 @@ const Home = () => {
     },
   };
 
+  const handleDownloadResume = () => {
+    window.open(resumePDF, '_blank');
+  };
+
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center  text-white">
+    <section className="min-h-screen flex flex-col justify-center items-center text-white">
       <div className="container mx-auto px-6 h-full flex flex-col-reverse md:flex-row justify-center items-center md:items-center">
         <div className="w-full md:w-1/2 text-center md:text-left space-y-8">
           <h2 className="text-4xl md:text-6xl font-bold leading-tight">
@@ -49,9 +54,13 @@ const Home = () => {
             <Link to='/projects' className="bg-teal-500 hover:bg-teal-400 text-white px-8 py-3 rounded-lg font-semibold transform hover:scale-105 transition-all">
               See My Work
             </Link>
-            <Link to="/contact" className="border border-teal-500 text-teal-300 hover:bg-teal-500/10 px-8 py-3 rounded-lg font-semibold transform hover:scale-105 transition-all">
-              Contact Me
-            </Link>
+            <button
+              onClick={handleDownloadResume}
+              className="flex items-center justify-center gap-2 border border-teal-500 text-teal-300 hover:bg-teal-500/10 px-8 py-3 rounded-lg font-semibold transform hover:scale-105 transition-all"
+            >
+              <FileDownIcon className="w-5 h-5" />
+              Resume
+            </button>
           </div>
           <div className="flex gap-6 justify-center md:justify-start mt-12">
             <a
@@ -130,8 +139,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-    
     </section>
   );
 };
